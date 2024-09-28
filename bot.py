@@ -3,7 +3,7 @@ import streamlit as st
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-from langchain.vectorstores.faiss import FAISS  # FAISS instead of Chroma
+from langchain.vectorstores.faiss import FAISS 
 from langchain_community.llms import HuggingFaceHub
 from langchain_core.prompts import PromptTemplate
 import tempfile
@@ -88,7 +88,7 @@ if huggingface_token:
 
 uploaded_pdf = st.file_uploader("📥 Upload your PDF", type="pdf")
 difficulty_level = st.selectbox("🎯 Select difficulty level:", ["Easy", "Medium", "Hard"])
-num_questions = st.slider("⚖️ Select the number of questions:", min_value=5, max_value=30, step=2)
+num_questions = st.slider("⚖️ Select the number of questions:", min_value=5, max_value=30, step=1)
 
 # Define questions_per_page
 questions_per_page = 5  # You can adjust this number as needed
@@ -111,7 +111,7 @@ if st.button("✨ Generate MCQs") and uploaded_pdf:
             data = pdf_loader.load()
 
             # Split the document into chunks for processing
-            text_splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=200)
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=200)
             chunks = text_splitter.split_documents(data)
 
             # Generate MCQs
@@ -129,7 +129,7 @@ if st.button("✨ Generate MCQs") and uploaded_pdf:
                     st.session_state.page -= 1
 
             if (st.session_state.page + 1) * questions_per_page < total_questions:
-                if st.button("➡️ Next"):
+                if st.button("Reset"):
                     st.session_state.page += 1
 
             # Export MCQs options
