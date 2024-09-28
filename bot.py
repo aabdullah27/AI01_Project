@@ -70,13 +70,13 @@ def paginate_mcqs(mcqs, page, questions_per_page=5):
     return mcq_list[start:end], len(mcq_list)
 
 
-# Function to export MCQs as PDF
+# Function to export MCQs as PDF with better alignment
 def convert_to_pdf(mcqs):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
     for line in mcqs.split("\n"):
-        pdf.multi_cell(0, 10, txt=line)  # Use multi_cell for better formatting
+        pdf.multi_cell(190, 10, txt=line, align='L')  # Ensuring proper alignment
     return pdf.output(dest='S').encode('latin1')
 
 
@@ -123,14 +123,9 @@ if st.button("✨ Generate MCQs") and uploaded_pdf:
             for question in mcq_page:
                 st.write(question)
 
-            # Add navigation for pagination
-            if st.session_state.page > 0:
-                if st.button("⬅️ Previous"):
-                    st.session_state.page -= 1
-
             if (st.session_state.page + 1) * questions_per_page < total_questions:
-                if st.button("Reset"):
-                    st.session_state.page += 1
+                if st.button("🔄 Reset"):
+                    st.session_state.page = 0 
 
             # Export MCQs options
             st.subheader("💾 Export MCQs:")
