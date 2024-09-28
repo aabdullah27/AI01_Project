@@ -88,7 +88,7 @@ if huggingface_token:
 
 uploaded_pdf = st.file_uploader("📥 Upload your PDF", type="pdf")
 difficulty_level = st.selectbox("🎯 Select difficulty level:", ["Easy", "Medium", "Hard"])
-num_questions = st.slider("⚖️ Select the number of questions:", min_value=5, max_value=20, step=5)
+num_questions = st.slider("⚖️ Select the number of questions:", min_value=5, max_value=30, step=2)
 
 # Define questions_per_page
 questions_per_page = 5  # You can adjust this number as needed
@@ -111,7 +111,7 @@ if st.button("✨ Generate MCQs") and uploaded_pdf:
             data = pdf_loader.load()
 
             # Split the document into chunks for processing
-            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=200)
             chunks = text_splitter.split_documents(data)
 
             # Generate MCQs
