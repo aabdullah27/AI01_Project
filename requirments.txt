@@ -1,0 +1,7 @@
+streamlit
+sentence-transformers
+langchain-community
+langchain
+fpdf
+huggingface-hub
+faiss-cpu # if you have a GPU use (faiss-gpu)
