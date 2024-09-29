@@ -5,7 +5,7 @@ This project implements an AI-driven Multiple Choice Question (MCQ) generation s
 ## 🚀 Live Demo
 
 You can try out the live demo here:  
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://document-question-answering-template.streamlit.app/)
+[![Open in Streamlit]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://document-question-answering-template.streamlit.app/](https://ai-mcqgenerator.streamlit.app/))
 
 ## ✨ Features
 
